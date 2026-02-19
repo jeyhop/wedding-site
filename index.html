@@ -1,0 +1,418 @@
+
+<div id="charro-wedding-site">
+  <style>
+    :root {
+      --bg: #f6efe2;
+      --paper: #fffaf0;
+      --ink: #2a1d14;
+      --accent: #9f2f1f;
+      --accent-2: #1d5c4b;
+      --gold: #c59b44;
+      --shadow: rgba(42, 29, 20, 0.18);
+      --stripe-1: #b23a2b;
+      --stripe-2: #f2b544;
+      --stripe-3: #1f6a58;
+      --stripe-4: #275d8e;
+    }
+
+    * { box-sizing: border-box; }
+
+    #charro-wedding-site {
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(197,155,68,0.25), transparent 30%),
+        radial-gradient(circle at 85% 0%, rgba(31,106,88,0.25), transparent 25%),
+        linear-gradient(180deg, #f8f0e0 0%, #f3e7d1 100%);
+      border: 3px solid var(--gold);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px var(--shadow);
+      max-width: 1100px;
+      margin: 12px auto;
+    }
+
+    .serape-bar {
+      height: 18px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--stripe-1) 0 28px,
+        var(--stripe-2) 28px 56px,
+        var(--stripe-3) 56px 84px,
+        var(--stripe-4) 84px 112px
+      );
+    }
+
+    .hero {
+      position: relative;
+      padding: 60px 24px 48px;
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(159,47,31,0.09), rgba(31,106,88,0.12)),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.3) 0 10px, rgba(255,255,255,0) 10px 20px);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      letter-spacing: 1px;
+      color: #4a2617;
+      text-transform: uppercase;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+      margin: 0;
+      color: #5a4434;
+    }
+
+    .hero .meta {
+      margin-top: 18px;
+      font-weight: 700;
+      color: var(--accent-2);
+    }
+
+    .hero .stamp {
+      margin: 24px auto 0;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px double var(--gold);
+      display: grid;
+      place-items: center;
+      background: var(--paper);
+      box-shadow: inset 0 0 0 6px rgba(197,155,68,0.15);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      padding: 22px;
+    }
+
+    .card {
+      grid-column: span 12;
+      background: var(--paper);
+      border: 1px solid rgba(42,29,20,0.12);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 6px 14px rgba(42,29,20,0.08);
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      border-radius: 14px 14px 0 0;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent-2));
+    }
+
+    .card h2 {
+      margin: 10px 0 10px;
+      font-family: Georgia, serif;
+      color: #4b2718;
+      font-size: 1.5rem;
+    }
+
+    .story, .rsvp, .travel { grid-column: span 12; }
+    .schedule, .details, .dress, .gifts, .faq, .contact { grid-column: span 6; }
+
+    .pill {
+      display: inline-block;
+      margin: 4px 6px 4px 0;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      background: rgba(31,106,88,0.12);
+      border: 1px solid rgba(31,106,88,0.28);
+      color: #1a4d40;
+      font-weight: 600;
+    }
+
+    .timeline {
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .timeline li {
+      padding: 10px 12px;
+      border-left: 4px solid var(--accent);
+      background: #fff;
+      border-radius: 8px;
+    }
+
+    .timeline b { color: var(--accent-2); }
+
+    .countdown {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .count-box {
+      min-width: 84px;
+      padding: 10px;
+      text-align: center;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid rgba(42,29,20,0.14);
+    }
+
+    .count-box .num {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .form-grid .full { grid-column: span 2; }
+
+    input, select, textarea, button {
+      width: 100%;
+      font: inherit;
+      border-radius: 8px;
+      border: 1px solid rgba(42,29,20,0.25);
+      padding: 9px 10px;
+      background: #fff;
+    }
+
+    button {
+      background: linear-gradient(180deg, #b44431, #8f2e1e);
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover { filter: brightness(1.05); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .ph {
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      border: 1px dashed rgba(42,29,20,0.35);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(197,155,68,0.3), transparent 45%),
+        linear-gradient(135deg, rgba(31,106,88,0.16), rgba(159,47,31,0.16));
+      display: grid;
+      place-items: center;
+      font-size: 0.86rem;
+      color: #5d4638;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(42,29,20,0.12);
+      padding: 8px 0;
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .footer {
+      text-align: center;
+      padding: 18px 14px 24px;
+      font-size: 0.92rem;
+      color: #6a5140;
+    }
+
+    @media (max-width: 900px) {
+      .schedule, .details, .dress, .gifts, .faq, .contact {
+        grid-column: span 12;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .full { grid-column: span 1; }
+      .hero { padding-top: 40px; }
+      .gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="serape-bar"></div>
+
+  <section class="hero">
+    <h1>Boda de Camila y Mateo</h1>
+    <p class="subtitle">A western-romantic celebration inspired by charro elegance</p>
+    <p class="meta">Saturday, October 24, 2026 | Rancho El Cielo, Jalisco, Mexico</p>
+    <div class="stamp">
+      ?Viva el Amor!
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="card story">
+      <h2>Our Story</h2>
+      <p>From a rodeo fair hello to sunset horse rides, our journey has been full of music, family, and adventure. We cannot wait to celebrate this next chapter with you.</p>
+      <span class="pill">Family First</span>
+      <span class="pill">Live Mariachi</span>
+      <span class="pill">Ranch Under the Stars</span>
+    </section>
+
+    <section class="card schedule">
+      <h2>Event Schedule</h2>
+      <ul class="timeline">
+        <li><b>4:00 PM</b> - Guest Arrival & Agua Fresca Welcome</li>
+        <li><b>5:00 PM</b> - Ceremony at the Rose Courtyard</li>
+        <li><b>6:30 PM</b> - Cocktail Hour with Mariachi Trio</li>
+        <li><b>8:00 PM</b> - Dinner, Toasts & First Dance</li>
+        <li><b>10:00 PM</b> - Baile & Late Night Tacos</li>
+      </ul>
+    </section>
+
+    <section class="card details">
+      <h2>Venue Details</h2>
+      <p><b>Location:</b> Rancho El Cielo, Jalisco, Mexico</p>
+      <p><b>Parking:</b> On-site lot plus shuttle drop-off from nearby hotels.</p>
+      <p><b>Weather Tip:</b> Bring a light shawl or jacket for evening breeze.</p>
+      <p><b>Map:</b> <a href="https://maps.google.com" target="_blank">Open in Google Maps</a></p>
+    </section>
+
+    <section class="card dress">
+      <h2>Dress Code</h2>
+      <p>Charro Chic / Cowboy Formal</p>
+      <ul>
+        <li>Men: suit or charro-inspired jacket, boots welcome.</li>
+        <li>Women: elegant dresses with warm-earth or jewel tones.</li>
+        <li>Avoid white/ivory and very casual attire.</li>
+      </ul>
+    </section>
+
+    <section class="card travel">
+      <h2>Travel & Stay</h2>
+      <p>We reserved room blocks at nearby hotels and arranged evening shuttles to/from the venue.</p>
+      <ul>
+        <li>Hotel de la Plaza - 12 min away</li>
+        <li>Casa del Sol Suites - 15 min away</li>
+        <li>Airport transfer recommendations available on request</li>
+      </ul>
+    </section>
+
+    <section class="card gifts">
+      <h2>Registry & Gifts</h2>
+      <p>Your presence is the greatest gift. If you wish, a registry and honeymoon fund are available:</p>
+      <ul>
+        <li><a href="#">Home Registry</a></li>
+        <li><a href="#">Honeymoon Fund</a></li>
+      </ul>
+    </section>
+
+    <section class="card rsvp">
+      <h2>RSVP</h2>
+      <p>Please reply by <b>September 15, 2026</b>.</p>
+      <form class="form-grid" onsubmit="event.preventDefault(); alert('Thanks! RSVP captured in this demo layout.');">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email" required />
+        <select>
+          <option>Accepts with joy</option>
+          <option>Regretfully declines</option>
+        </select>
+        <select>
+          <option>1 Guest</option>
+          <option>2 Guests</option>
+          <option>3 Guests</option>
+        </select>
+        <textarea class="full" rows="3" placeholder="Dietary notes / message"></textarea>
+        <button class="full" type="submit">Send RSVP</button>
+      </form>
+
+      <h3 style="margin:16px 0 8px; color:#5a3323;">Countdown</h3>
+      <div class="countdown" id="countdown">
+        <div class="count-box"><span class="num" id="d">--</span>days</div>
+        <div class="count-box"><span class="num" id="h">--</span>hours</div>
+        <div class="count-box"><span class="num" id="m">--</span>minutes</div>
+        <div class="count-box"><span class="num" id="s">--</span>seconds</div>
+      </div>
+    </section>
+
+    <section class="card faq">
+      <h2>FAQ</h2>
+      <div class="faq-item"><b>Can I bring kids?</b><br/>Yes, children are welcome at ceremony and dinner.</div>
+      <div class="faq-item"><b>Will there be vegetarian options?</b><br/>Yes, menu includes vegetarian and gluten-free choices.</div>
+      <div class="faq-item"><b>Any cultural traditions?</b><br/>Expect mariachi, a blessing, and a lively dance floor.</div>
+    </section>
+
+    <section class="card contact">
+      <h2>Contact</h2>
+      <p><b>Wedding Planner:</b> Ana Rivera</p>
+      <p><b>Email:</b> events@example.com</p>
+      <p><b>Phone:</b> +52 33 5555 0142</p>
+      <p>For urgent day-of questions, text the planner directly.</p>
+    </section>
+
+    <section class="card">
+      <h2>Photo Moments</h2>
+      <p>Replace placeholders with your engagement and family photos.</p>
+      <div class="gallery">
+        <div class="ph">Engagement
+Portrait</div>
+        <div class="ph">Couple
+at the ranch</div>
+        <div class="ph">Family
+celebration</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer">
+    Made with love for a charro-inspired wedding celebration.
+  </div>
+
+  <div class="serape-bar"></div>
+
+  <script>
+    (function() {
+      const target = new Date('2026-10-24T16:00:00').getTime();
+      const d = document.getElementById('d');
+      const h = document.getElementById('h');
+      const m = document.getElementById('m');
+      const s = document.getElementById('s');
+
+      function update() {
+        const now = Date.now();
+        const diff = Math.max(0, target - now);
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        d.textContent = String(days);
+        h.textContent = String(hours).padStart(2, '0');
+        m.textContent = String(mins).padStart(2, '0');
+        s.textContent = String(secs).padStart(2, '0');
+      }
+
+      update();
+      setInterval(update, 1000);
+    })();
+  </script>
+</div>
